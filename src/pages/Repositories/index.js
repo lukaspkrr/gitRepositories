@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { ActivityIndicator, FlatList } from 'react-native'
+import React, { Component } from 'react'
+import { ActivityIndicator } from 'react-native'
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Creators as RepositoriesActions } from './../../store/ducks/repositories'
 
 import { 
@@ -22,17 +22,16 @@ import {
     UserLabel,
     GobackContent,
     Icons,
-} from './styles';
+} from './styles'
 
 class Repositories extends Component {
   componentDidMount() {
-     const { loadRepositoriesRequest } = this.props;
+     const { loadRepositoriesRequest } = this.props
      loadRepositoriesRequest()
   }
 
   goBackToLogin = () => {
     const { navigation } = this.props
-    console.tron.log('Entrou')
     navigation.navigate('Login')
   }
 
@@ -112,9 +111,9 @@ class Repositories extends Component {
 const mapStateToProps = state => ({
   repositories: state.repositories,
   user: state.login.user,
-});
+})
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(RepositoriesActions, dispatch);
+  bindActionCreators(RepositoriesActions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Repositories)
