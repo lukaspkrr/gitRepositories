@@ -12,7 +12,15 @@ export const Types = {
  *  Reducer
  */
 const INITIAL_STATE = {
-    username: null,
+    user: {
+        username: null,
+        name: null,
+        avatar: null,
+        company: null,
+        blog: null,
+        location: null,
+        email: null,
+    },
     error: false,
     loading: false,
 };
@@ -22,7 +30,20 @@ export default function login(state = INITIAL_STATE, action) {
         case Types.REQUEST:
             return { loading: true }
         case Types.SUCCESS:
-            return { ...state, username: action.payload.username, error: false, loading: false }
+            return { 
+                ...state, 
+                user: {
+                    username: action.payload.data.login,
+                    name: action.payload.data.name,
+                    avatar: action.payload.data.avatar_url,
+                    company: action.payload.data.company,
+                    blog: action.payload.data.blog,
+                    location: action.payload.data.location,
+                    email: action.payload.data.email,
+                },
+                error: false, 
+                loading: false 
+            }
             case Types.FAILURE:
                     return { ...state, error: true, loading: false }
         default:
@@ -38,9 +59,9 @@ export default function login(state = INITIAL_STATE, action) {
         type: Types.REQUEST,
         payload: { username },
     }),
-    loginSuccess: username => ({
+    loginSuccess: data => ({
         type: Types.SUCCESS,
-        payload: { username },
+        payload: { data },
     }),
     loginFailure: () => ({
         type: Types.FAILURE, 

@@ -7,8 +7,8 @@ import { navigate } from './../../services/navigation'
 function* login(action) {
     try {
         const { username } = action.payload
-        yield call(api.get, `/users/${username}`)
-        yield put(LoginActions.loginSuccess(username))
+        const response = yield call(api.get, `/users/${username}`)
+        yield put(LoginActions.loginSuccess(response.data))
         navigate('Repositories')
     } catch(e) {
         yield put(LoginActions.loginFailure())
@@ -17,7 +17,7 @@ function* login(action) {
 
 function* loadRepositories() {
     try {
-        const { username } = yield select(state => state.login)
+        const { username } = yield select(state => state.login.user)
         const response = yield call(api.get, `/users/${username}/repos`)
         yield put(RepositoriesActions.loadRepositoriesSuccess(response.data))
     } catch(e) {
