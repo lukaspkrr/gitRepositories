@@ -95,7 +95,7 @@ class Repositories extends Component {
                   <RepositorieContent>
                     <RepositorieName>{item.name}</RepositorieName>
                     <RepositorieDescription>{item.full_name}</RepositorieDescription>
-                    <RepositorieDescription>{item.private ? 'Privado' : 'Público'}</RepositorieDescription>
+                    <RepositorieDescription>{item.private ? 'Private' : 'Public'}</RepositorieDescription>
                   </RepositorieContent>
                 )}
                 keyExtractor={item => `${item.id}`}

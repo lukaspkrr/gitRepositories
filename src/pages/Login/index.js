@@ -22,19 +22,19 @@ class Login extends Component {
     const { error, loading } = this.props
     return (
       <Container>
-        {error ? <Error>Usuário inexistente</Error> : null}
+        {error ? <Error>Nonexistent user</Error> : null}
         <Input
           value={username}
           onChangeText={text => this.setState({username: text})}
           autoCaptalize="none"
           autoCorrect={false}
-          placeholder="Digite seu usuário"
+          placeholder="Enter your git username"
         />
         <Button onPress={() => this.handleSubmit()}>
           { 
             loading 
             ? <ActivityIndicator size="small" color="#fff"/> 
-            : <ButtonText>Entrar</ButtonText>
+            : <ButtonText>Enter</ButtonText>
           }
         </Button>
       </Container>
